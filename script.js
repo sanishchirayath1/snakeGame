@@ -42,8 +42,9 @@ function createGrid() {
 createGrid()
 
 function startGame () {
-    // currentSnake.forEach(index => squares[index].classList.remove("snake"))
-   
+ 
+    currentSnake.forEach(index => squares[index].classList.remove("snake"))
+    squares[currentSnake[0]].removeAttribute("id","head")
     currentSnake.forEach(index => squares[index].classList.remove("dead"))
     
     squares[appleIndex].classList.remove("apple")
