@@ -5,8 +5,9 @@ body {
   color: whitesmoke;
 }
 body {
-  margin: 10px;
+  margin: auto;
   border: solid;
+  max-width: 500px;
   border-radius: 25px;
   padding: 20px;
   background-color: rgb(34, 34, 34);
