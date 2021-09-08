@@ -20,7 +20,7 @@ button {
     rgba(0, 0, 0, 0.22) 0px 15px 12px;
 }
 button:hover {
-  color: yellow;
+  color: brown;
   background-color: aquamarine;
 }
 .buttons button {

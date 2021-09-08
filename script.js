@@ -12,6 +12,23 @@ let speed = 0.9
 let timerId = 0
 const gameOver = document.getElementById("game_over")
 
+const hiScoreDisplay = document.getElementById("hi_score")
+
+let highScore = localStorage.getItem("highScore")
+
+if(highScore === null){
+    highScoreVal = 0
+    localStorage.setItem("highScore",JSON.stringify(highScoreVal))
+}else {
+    highScoreVal = JSON.parse(highScore)
+    hiScoreDisplay.textContent = highScore
+}
+
+
+
+
+
+
 // mobile controls
 const up = document.getElementById("up")
 const down = document.getElementById("down")
@@ -41,6 +58,7 @@ function startGame () {
 
     //add SCORE
     score.textContent = gameScore
+    
     direction = 1
     time = 1000
     currentSnake.forEach(index => squares[index].classList.add("snake"))
@@ -52,13 +70,13 @@ function startGame () {
 }
 
 function move() {
-    if(
+    if(//bottom wall
        (currentSnake[0] + width >= width*width && direction === width)||
-       //
+       //top wall
        (currentSnake[0] - width < 0 && direction === -width)||
-    //    hits right wall 
+        //hits right wall 
        (currentSnake[0] % width === 9 && direction === 1)||
-    //    hits left wall
+        //hits left wall
        (currentSnake[0] % width === 0 && direction === -1)||
        (squares[currentSnake[0] + direction].classList.contains("snake"))
     ) {
@@ -71,6 +89,7 @@ function move() {
     squares[tail].classList.remove("snake")
     currentSnake.unshift(currentSnake[0] + direction)
     squares[currentSnake[0]].classList.add("snake")
+    
 
     if (squares[currentSnake[0]].classList.contains("apple")) {
         squares[currentSnake[0]].classList.remove("apple")
@@ -80,12 +99,19 @@ function move() {
         generateApple()
         gameScore++
         score.textContent = gameScore
+        
         clearInterval(timerId)
         time *= speed
         timerId = setInterval(move,time)
         
     }
+    if (gameScore > highScoreVal){
+        highScoreVal = gameScore
+        localStorage.setItem("highScore",JSON.stringify(highScoreVal))
+        hiScoreDisplay.textContent = highScoreVal
 
+    }
+    
 }
 
 
