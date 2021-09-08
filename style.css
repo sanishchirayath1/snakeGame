@@ -1,11 +1,11 @@
 html,
 body {
-  margin: 25px;
   text-align: center;
   background-color: rgb(37, 38, 41);
   color: whitesmoke;
 }
 body {
+  margin: 25px;
   border: solid;
   border-radius: 25px;
   padding: 20px;
