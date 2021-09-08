@@ -1,6 +1,7 @@
 const grid = document.getElementById("grid")
 const startButton = document.getElementById("start")
 const score =  document.getElementById("score")
+const body = document.getElementById("body")
 let squares = []
 let currentSnake = [2,1,0]
 let direction = 1
@@ -9,6 +10,8 @@ let gameScore = 0
 let time = 1000
 let speed = 0.9
 let timerId = 0
+const gameOver = document.getElementById("game_over")
+;
 
 function createGrid() {
     for(let i = 0; i < width*width; i++){
@@ -25,6 +28,8 @@ createGrid()
 function startGame () {
     currentSnake.forEach(index => squares[index].classList.remove("snake"))
     squares[appleIndex].classList.remove("apple")
+    gameOver.textContent = ""
+    
     clearInterval(timerId)
     currentSnake = [2,1,0]
     gameScore = 0
@@ -51,6 +56,7 @@ function move() {
        (squares[currentSnake[0] + direction].classList.contains("snake"))
     ) {
     clearInterval(timerId)
+    gameOver.textContent = "Game Over"
     }
     //remove the last element from snake array
     const tail = currentSnake.pop()
