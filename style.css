@@ -18,8 +18,12 @@ body {
 h1 {
   text-shadow: 0 1px 0 rgb(202, 202, 202);
 }
-button {
+#start {
   padding: 10px 25px;
+
+}
+button {
+  /* padding: 10px 25px; */
   background-color: aqua;
   color: black;
   border: none;
