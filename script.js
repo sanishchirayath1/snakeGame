@@ -45,7 +45,7 @@ function startGame () {
     // currentSnake.forEach(index => squares[index].classList.remove("snake"))
    
     currentSnake.forEach(index => squares[index].classList.remove("dead"))
-
+    
     squares[appleIndex].classList.remove("apple")
     gameOver.textContent = ""
     
@@ -59,6 +59,7 @@ function startGame () {
     direction = 1
     time = 1000
     currentSnake.forEach(index => squares[index].classList.add("snake"))
+    squares[currentSnake[0]].setAttribute("id","head")
  
     generateApple()
     timerId = setInterval(move,time)
@@ -79,14 +80,17 @@ function move() {
     clearInterval(timerId)
     gameOver.textContent = "Game Over"
     currentSnake.forEach(index => squares[index].classList.remove("snake"))
+    squares[currentSnake[0]].removeAttribute("id","head")
+
     currentSnake.forEach(index => squares[index].classList.add("dead"))
     return
     }
     //remove the last element from snake array
     const tail = currentSnake.pop()
     squares[tail].classList.remove("snake")
-    
+    squares[currentSnake[0]].removeAttribute("id","head")
     currentSnake.unshift(currentSnake[0] + direction)
+    squares[currentSnake[0]].setAttribute("id","head")
     squares[currentSnake[0]].classList.add("snake")
    
     // squares[currentSnake[0]].classList.add("snake")
