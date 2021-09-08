@@ -58,10 +58,11 @@ button:hover {
 .square {
   width: 20px;
   height: 20px;
-  border-radius: 5px;
+  border-radius: 8px;
 }
 #head {
   background-color: brown;
+  border-radius: 5px;
 }
 .snake {
   background-color: green;
