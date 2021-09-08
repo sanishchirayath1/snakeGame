@@ -43,9 +43,8 @@ function startGame () {
     score.textContent = gameScore
     direction = 1
     time = 1000
-    generateApple()
     currentSnake.forEach(index => squares[index].classList.add("snake"))
-
+    generateApple()
     timerId = setInterval(move,time)
     
     
