@@ -25,10 +25,6 @@ if(highScore === null){
 }
 
 
-
-
-
-
 // mobile controls
 const up = document.getElementById("up")
 const down = document.getElementById("down")
@@ -45,10 +41,10 @@ function createGrid() {
 }
 createGrid()
 
-
-
 function startGame () {
     currentSnake.forEach(index => squares[index].classList.remove("snake"))
+   
+
     squares[appleIndex].classList.remove("apple")
     gameOver.textContent = ""
     
@@ -62,11 +58,10 @@ function startGame () {
     direction = 1
     time = 1000
     currentSnake.forEach(index => squares[index].classList.add("snake"))
+ 
     generateApple()
     timerId = setInterval(move,time)
     
-    
-
 }
 
 function move() {
@@ -87,8 +82,11 @@ function move() {
     //remove the last element from snake array
     const tail = currentSnake.pop()
     squares[tail].classList.remove("snake")
+    
     currentSnake.unshift(currentSnake[0] + direction)
     squares[currentSnake[0]].classList.add("snake")
+   
+    // squares[currentSnake[0]].classList.add("snake")
     
 
     if (squares[currentSnake[0]].classList.contains("apple")) {

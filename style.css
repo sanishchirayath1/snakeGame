@@ -40,10 +40,17 @@ button:hover {
 .square {
   width: 20px;
   height: 20px;
+  border-radius: 5px;
+}
+#head {
+  background-color: brown;
 }
 .snake {
   background-color: green;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 .apple {
   background-color: red;
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
