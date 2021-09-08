@@ -42,8 +42,9 @@ function createGrid() {
 createGrid()
 
 function startGame () {
-    currentSnake.forEach(index => squares[index].classList.remove("snake"))
+    // currentSnake.forEach(index => squares[index].classList.remove("snake"))
    
+    currentSnake.forEach(index => squares[index].classList.remove("dead"))
 
     squares[appleIndex].classList.remove("apple")
     gameOver.textContent = ""
@@ -77,6 +78,8 @@ function move() {
     ) {
     clearInterval(timerId)
     gameOver.textContent = "Game Over"
+    currentSnake.forEach(index => squares[index].classList.remove("snake"))
+    currentSnake.forEach(index => squares[index].classList.add("dead"))
     return
     }
     //remove the last element from snake array
