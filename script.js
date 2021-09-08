@@ -50,13 +50,17 @@ function startGame () {
 function move() {
     if(
        (currentSnake[0] + width >= width*width && direction === width)||
+       //
        (currentSnake[0] - width < 0 && direction === -width)||
+    //    hits right wall 
        (currentSnake[0] % width === 9 && direction === 1)||
+    //    hits left wall
        (currentSnake[0] % width === 0 && direction === -1)||
        (squares[currentSnake[0] + direction].classList.contains("snake"))
     ) {
     clearInterval(timerId)
     gameOver.textContent = "Game Over"
+    return
     }
     //remove the last element from snake array
     const tail = currentSnake.pop()
