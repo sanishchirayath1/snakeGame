@@ -94,9 +94,7 @@ function move() {
     squares[currentSnake[0]].setAttribute("id","head")
     squares[currentSnake[0]].classList.add("snake")
    
-    // squares[currentSnake[0]].classList.add("snake")
     
-
     if (squares[currentSnake[0]].classList.contains("apple")) {
         squares[currentSnake[0]].classList.remove("apple")
         squares[tail].classList.add("snake")
@@ -115,11 +113,8 @@ function move() {
         highScoreVal = gameScore
         localStorage.setItem("highScore",JSON.stringify(highScoreVal))
         hiScoreDisplay.textContent = highScoreVal
-
-    }
-    
+    }   
 }
-
 
 function generateApple() {
     do {
