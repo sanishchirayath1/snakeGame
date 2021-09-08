@@ -11,7 +11,12 @@ let time = 1000
 let speed = 0.9
 let timerId = 0
 const gameOver = document.getElementById("game_over")
-;
+
+// mobile controls
+const up = document.getElementById("up")
+const down = document.getElementById("down")
+const right = document.getElementById("right")
+const left = document.getElementById("left")
 
 function createGrid() {
     for(let i = 0; i < width*width; i++){
@@ -92,7 +97,7 @@ function generateApple() {
     squares[appleIndex].classList.add("apple")
 }
 generateApple()
-
+//controls execution
 window.addEventListener("keydown", function(event) {
     if (event.code == "ArrowDown"){
         direction = width
@@ -107,6 +112,19 @@ window.addEventListener("keydown", function(event) {
     else if (event.code == "ArrowLeft"){
         direction = -1
     }
+})
+//on-screen button controls
+up.addEventListener("click",function(){
+    direction = -width
+})
+down.addEventListener("click",function(){
+    direction = width
+})
+left.addEventListener("click",function(){
+    direction = -1
+})
+right.addEventListener("click",function(){
+    direction = 1
 })
 
 startButton.addEventListener("click",startGame)
