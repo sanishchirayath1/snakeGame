@@ -31,6 +31,22 @@ const down = document.getElementById("down")
 const right = document.getElementById("right")
 const left = document.getElementById("left")
 
+//audio files
+const dead = new Audio();
+const eat = new Audio();
+const upAudio = new Audio();
+const downAudio = new Audio();
+const rightAudio = new Audio();
+const leftAudio = new Audio();
+
+dead.src = "audios/audio_dead.mp3";
+eat.src = "audios/audio_eat.mp3";
+upAudio.src = "audios/audio_up.mp3";
+downAudio.src = "audios/audio_down.mp3";
+rightAudio.src = "audios/audio_right.mp3";
+leftAudio.src = "audios/audio_left.mp3";
+
+
 function createGrid() {
     for(let i = 0; i < width*width; i++){
         const square = document.createElement("div")
@@ -79,6 +95,7 @@ function move() {
        (squares[currentSnake[0] + direction].classList.contains("snake"))
     ) {
     clearInterval(timerId)
+    dead.play()
     gameOver.textContent = "Game Over"
     currentSnake.forEach(index => squares[index].classList.remove("snake"))
     squares[currentSnake[0]].removeAttribute("id","head")
@@ -96,6 +113,7 @@ function move() {
    
     
     if (squares[currentSnake[0]].classList.contains("apple")) {
+        eat.play()
         squares[currentSnake[0]].classList.remove("apple")
         squares[tail].classList.add("snake")
         currentSnake.push(tail)
@@ -127,30 +145,44 @@ generateApple()
 window.addEventListener("keydown", function(event) {
     if (event.code == "ArrowDown"){
         direction = width
+        downAudio.play()
     }
     else if (event.code == "ArrowUp"){
         direction = -width
+        upAudio.play()
 
     }
     else if (event.code == "ArrowRight"){
         direction = 1
+        rightAudio.play()
+
     }
     else if (event.code == "ArrowLeft"){
         direction = -1
+        leftAudio.play()
+
     }
 })
 //on-screen button controls
 up.addEventListener("click",function(){
     direction = -width
+    upAudio.play()
+
 })
 down.addEventListener("click",function(){
     direction = width
+    downAudio.play()
+
 })
 left.addEventListener("click",function(){
     direction = -1
+    leftAudio.play()
+
 })
 right.addEventListener("click",function(){
     direction = 1
+    rightAudio.play()
+
 })
 
 startButton.addEventListener("click",startGame)
