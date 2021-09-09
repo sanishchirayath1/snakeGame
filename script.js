@@ -147,11 +147,11 @@ function move() {
         gameScore++
         score.textContent = gameScore
         
-        setTimeout(function () {squares[currentSnake[0]].style.transform = "scale(1.0)"},time/1.5)
-
         clearInterval(timerId)
         time *= speed
         timerId = setInterval(move,time)
+        
+        setTimeout(function () {squares[currentSnake[0]].style.transform = "scale(1.0)"},time/1.2)
     }
     
     if (gameScore > highScoreVal){
