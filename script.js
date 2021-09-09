@@ -143,6 +143,7 @@ function move() {
         currentSnake.push(tail)
         squares[currentSnake[0]].style.transform = "scale(1.2)"
 
+    
         generateApple()
         gameScore++
         score.textContent = gameScore
@@ -151,7 +152,9 @@ function move() {
         time *= speed
         timerId = setInterval(move,time)
         
-        setTimeout(function () {squares[currentSnake[0]].style.transform = "scale(1.0)"},time/1.2)
+        /*I am getting weird visual shadow over the squares where tranform happened..Still confused why is it happening..It is because of the transform..but clueless on how to fix it*/
+        setTimeout(function () {squares[currentSnake[0]].style.transform = "scale(1.0)"},time/2)
+        
     }
     
     if (gameScore > highScoreVal){
