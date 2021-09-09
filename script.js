@@ -117,7 +117,7 @@ function move() {
         if (restart){
             startGame()
         }
-       },500) 
+       },1000) 
     }
 
     
