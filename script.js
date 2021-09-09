@@ -80,13 +80,13 @@ function startGame () {
     time = 1000
     currentSnake.forEach(index => squares[index].classList.add("snake"))
     squares[currentSnake[0]].setAttribute("id","head")
- 
     generateApple()
     timerId = setInterval(move,time)
     
 }
 
 function move() {
+    moved = true 
 
     if(//bottom wall
        (currentSnake[0] + width >= width*width && direction === width)||
@@ -110,7 +110,7 @@ function move() {
 
     let restart
     
-    //funtion to dealy the alert message
+    //funtion to delay the alert message
     if(true) {
        setTimeout(function () {
         restart = confirm("Game Over, Click 'OK' to restart the game")
@@ -119,11 +119,9 @@ function move() {
         }
        },1000) 
     }
-
-    
-
     return
     }
+
     //remove the last element from snake array
     const tail = currentSnake.pop()
     squares[tail].classList.remove("snake")
@@ -132,7 +130,6 @@ function move() {
     squares[currentSnake[0]].setAttribute("id","head")
     squares[currentSnake[0]].classList.add("snake")
    
-    moved = true 
    
     if (squares[currentSnake[0]].classList.contains("apple")) {
         currentAudio.pause()
@@ -165,52 +162,55 @@ function generateApple() {
     squares[appleIndex].classList.add("apple")
 }
 generateApple()
+
 //controls execution
 window.addEventListener("keydown", function(event) {
-    if (event.code == "ArrowDown"){
+    if(moved) {
+        if (event.code == "ArrowDown"){
         
-        if (direction !== -width && moved === true){
-            direction = width
+            if (direction !== -width){
+                direction = width
+            }
+            currentAudio.pause()
+            downAudio.play()
+            currentAudio = downAudio 
+            }
+        else if (event.code == "ArrowUp"){
+            
+            if (direction !== width){
+                direction = -width
+            }
+            currentAudio.pause()
+            upAudio.play()
+            currentAudio = upAudio
+            }
+        else if (event.code == "ArrowRight"){
+            
+            if (direction !== -1){
+                direction = 1
+            }
+            currentAudio.pause()
+            rightAudio.play()
+            currentAudio = rightAudio
         }
-        currentAudio.pause()
-        downAudio.play()
-        currentAudio = downAudio
-        moved = false 
-      }
-    else if (event.code == "ArrowUp"){
-        
-        if (direction !== width && moved === true){
-            direction = -width
+        else if (event.code == "ArrowLeft"){
+    
+            if (direction !== 1){
+                direction = -1
+            }
+            currentAudio.pause()
+            leftAudio.play()
+            currentAudio = leftAudio
+            
         }
-        currentAudio.pause()
-        upAudio.play()
-        currentAudio = upAudio
         moved = false 
-      }
-    else if (event.code == "ArrowRight"){
-        
-        if (direction !== -1 && moved === true){
-            direction = 1
-        }
-        currentAudio.pause()
-        rightAudio.play()
-        currentAudio = rightAudio
-        moved = false 
-    }
-    else if (event.code == "ArrowLeft"){
 
-        if (direction !== 1 && moved === true){
-            direction = -1
-        }
-        currentAudio.pause()
-        leftAudio.play()
-        currentAudio = leftAudio
-        moved = false 
     }
+    
 })
 //on-screen button controls
 up.addEventListener("click",function(){
-    if (direction !== width && moved === true){
+    if (direction !== width && moved){
         direction = -width
     }
     currentAudio.pause()
@@ -219,7 +219,7 @@ up.addEventListener("click",function(){
     moved = false 
 })
 down.addEventListener("click",function(){
-    if (direction !== -width && moved === true){
+    if (direction !== -width && moved){
         direction = width
     }
     currentAudio.pause()
@@ -228,7 +228,7 @@ down.addEventListener("click",function(){
     moved = false 
 })
 left.addEventListener("click",function(){
-    if (direction !== 1 && moved === true){
+    if (direction !== 1 && moved){
         direction = -1
     }
     currentAudio.pause()
@@ -237,7 +237,7 @@ left.addEventListener("click",function(){
     moved = false 
 })
 right.addEventListener("click",function(){
-    if (direction !== -1 && moved === true){
+    if (direction !== -1 && moved){
         direction = 1
     }
     currentAudio.pause()
