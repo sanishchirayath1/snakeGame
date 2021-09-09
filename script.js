@@ -149,26 +149,38 @@ generateApple()
 //controls execution
 window.addEventListener("keydown", function(event) {
     if (event.code == "ArrowDown"){
-        direction = width
+        
+        if (direction !== -width){
+            direction = width
+        }
         currentAudio.pause()
         downAudio.play()
         currentAudio = downAudio
     }
     else if (event.code == "ArrowUp"){
-        direction = -width
+        
+        if (direction !== width){
+            direction = -width
+        }
         currentAudio.pause()
         upAudio.play()
         currentAudio = upAudio
 
     }
     else if (event.code == "ArrowRight"){
-        direction = 1
+        
+        if (direction !== -1){
+            direction = 1
+        }
         currentAudio.pause()
         rightAudio.play()
         currentAudio = rightAudio
     }
     else if (event.code == "ArrowLeft"){
-        direction = -1
+
+        if (direction !== 1){
+            direction = -1
+        }
         currentAudio.pause()
         leftAudio.play()
         currentAudio = leftAudio
@@ -176,25 +188,33 @@ window.addEventListener("keydown", function(event) {
 })
 //on-screen button controls
 up.addEventListener("click",function(){
-    direction = -width
+    if (direction !== width){
+        direction = -width
+    }
     currentAudio.pause()
     upAudio.play()
     currentAudio = upAudio
 })
 down.addEventListener("click",function(){
-    direction = width
+    if (direction !== -width){
+        direction = width
+    }
     currentAudio.pause()
     downAudio.play()
     currentAudio = downAudio
 })
 left.addEventListener("click",function(){
-    direction = -1
+    if (direction !== 1){
+        direction = -1
+    }
     currentAudio.pause()
     leftAudio.play()
     currentAudio = leftAudio
 })
 right.addEventListener("click",function(){
-    direction = 1
+    if (direction !== -1){
+        direction = 1
+    }
     currentAudio.pause()
     rightAudio.play()
     currentAudio = rightAudio
