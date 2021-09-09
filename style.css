@@ -64,6 +64,7 @@ button:hover {
   background-color: brown;
   border-radius: 5px;
 }
+
 .snake {
   background-color: green;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
