@@ -152,8 +152,8 @@ function move() {
         time *= speed
         timerId = setInterval(move,time)
         
-        /*I am getting weird visual shadow over the squares where tranform happened..Still confused why is it happening..It is because of the transform..but clueless on how to fix it*/
-        setTimeout(function () {squares[currentSnake[0]].style.transform = "scale(1.0)"},time/2)
+      
+        setTimeout(function () {squares[currentSnake[0]].style.removeProperty("transform")},time/2)
         
     }
     
