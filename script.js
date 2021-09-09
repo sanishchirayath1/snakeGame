@@ -39,6 +39,8 @@ const downAudio = new Audio();
 const rightAudio = new Audio();
 const leftAudio = new Audio();
 let currentAudio = dead;
+/*introduced moved with a boolean functionality for eliminating the death condition when snake is reversed..We can do the same without moved ..but if we don't introduce moved it causes a bug where the snake dies when two keys are pressed quickly and  the second key is in reverse of the snake. Don't know whether i have introduced any new bug or it effects the gameplay*/
+let moved;
 
 dead.src = "audios/audio_dead.mp3";
 eat.src = "audios/audio_eat.mp3";
@@ -85,6 +87,7 @@ function startGame () {
 }
 
 function move() {
+
     if(//bottom wall
        (currentSnake[0] + width >= width*width && direction === width)||
        //top wall
@@ -99,11 +102,26 @@ function move() {
     currentAudio.pause()
     dead.play()
     currentAudio = dead
-    gameOver.textContent = "Game Over"
+    
+    //removes all square stylings as the game is over
     currentSnake.forEach(index => squares[index].classList.remove("snake"))
+    currentSnake.forEach(index => squares[index].classList.add("dead"))
     squares[currentSnake[0]].removeAttribute("id","head")
 
-    currentSnake.forEach(index => squares[index].classList.add("dead"))
+    let restart
+    
+    //funtion to dealy the alert message
+    if(true) {
+       setTimeout(function () {
+        restart = confirm("Game Over, Click 'OK' to restart the game")
+        if (restart){
+            startGame()
+        }
+       },500) 
+    }
+
+    
+
     return
     }
     //remove the last element from snake array
@@ -114,7 +132,8 @@ function move() {
     squares[currentSnake[0]].setAttribute("id","head")
     squares[currentSnake[0]].classList.add("snake")
    
-    
+    moved = true 
+   
     if (squares[currentSnake[0]].classList.contains("apple")) {
         currentAudio.pause()
         eat.play()
@@ -150,74 +169,81 @@ generateApple()
 window.addEventListener("keydown", function(event) {
     if (event.code == "ArrowDown"){
         
-        if (direction !== -width){
+        if (direction !== -width && moved === true){
             direction = width
         }
         currentAudio.pause()
         downAudio.play()
         currentAudio = downAudio
-    }
+        moved = false 
+      }
     else if (event.code == "ArrowUp"){
         
-        if (direction !== width){
+        if (direction !== width && moved === true){
             direction = -width
         }
         currentAudio.pause()
         upAudio.play()
         currentAudio = upAudio
-
-    }
+        moved = false 
+      }
     else if (event.code == "ArrowRight"){
         
-        if (direction !== -1){
+        if (direction !== -1 && moved === true){
             direction = 1
         }
         currentAudio.pause()
         rightAudio.play()
         currentAudio = rightAudio
+        moved = false 
     }
     else if (event.code == "ArrowLeft"){
 
-        if (direction !== 1){
+        if (direction !== 1 && moved === true){
             direction = -1
         }
         currentAudio.pause()
         leftAudio.play()
         currentAudio = leftAudio
+        moved = false 
     }
 })
 //on-screen button controls
 up.addEventListener("click",function(){
-    if (direction !== width){
+    if (direction !== width && moved === true){
         direction = -width
     }
     currentAudio.pause()
     upAudio.play()
     currentAudio = upAudio
+    moved = false 
 })
 down.addEventListener("click",function(){
-    if (direction !== -width){
+    if (direction !== -width && moved === true){
         direction = width
     }
     currentAudio.pause()
     downAudio.play()
     currentAudio = downAudio
+    moved = false 
 })
 left.addEventListener("click",function(){
-    if (direction !== 1){
+    if (direction !== 1 && moved === true){
         direction = -1
     }
     currentAudio.pause()
     leftAudio.play()
     currentAudio = leftAudio
+    moved = false 
 })
 right.addEventListener("click",function(){
-    if (direction !== -1){
+    if (direction !== -1 && moved === true){
         direction = 1
     }
     currentAudio.pause()
     rightAudio.play()
     currentAudio = rightAudio
+    moved = false 
 })
 
 startButton.addEventListener("click",startGame)
