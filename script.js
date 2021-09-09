@@ -101,7 +101,6 @@ function move() {
     clearInterval(timerId)
     currentAudio.pause()
     dead.play()
-    currentAudio = dead
     
     //removes all square stylings as the game is over
     currentSnake.forEach(index => squares[index].classList.remove("snake"))
