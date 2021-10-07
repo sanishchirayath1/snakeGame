@@ -1,4 +1,9 @@
 # snakeGame
+<!-- https://pagespeed-insights.herokuapp.com/?url=https://sanishchirayath1.github.io/snakeGame/ -->
+<p align="center">	<!-- (optional) center align -->
+    <img href="https://pagespeed-insights.herokuapp.com/?url=https://sanishchirayath1.github.io/snakeGame/" src="download.svg" width="400px">
+</p>
+
 Game made to learn javascript
 I made an intial array for the snake [2,1,0]
 then added styling to it
