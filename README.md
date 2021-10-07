@@ -1,5 +1,6 @@
 # snakeGame
 <!-- https://pagespeed-insights.herokuapp.com/?url=https://sanishchirayath1.github.io/snakeGame/ -->
+<!-- repo: https://github.com/ankurparihar/readme-pagespeed-insights -->
 <p align="center">	<!-- (optional) center align -->
     <img href="https://pagespeed-insights.herokuapp.com/?url=https://sanishchirayath1.github.io/snakeGame/" src="download.svg" width="400px">
 </p>
